@@ -119,6 +119,11 @@ def set_session_readonly(dbapi_connection, connection_record):
 @limiter.limit(RATE_LIMIT)
 async def sqlquery_alchemy(sqlquery: str, api_key: str, request: Request) -> Any:
     """Execute SQL query using SQLAlchemy and return results directly."""
+
+    # TEMPORARY DEBUGGING CODE - REMOVE AFTER FIXING
+    logger.error(f"Received API Key: '{api_key}'") 
+    logger.error(f"Expected REX_API_KEY: '{REX_API_KEY}'") 
+
     if api_key != REX_API_KEY:
         raise HTTPException(status_code=401, detail="Invalid API key")
         
