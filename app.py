@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
+from urllib.parse import urlparse # FIX: Ensure urlparse is imported before its usage
 
 # Configure logging
 logging.basicConfig(
@@ -37,11 +38,10 @@ if not REX_API_KEY:
     raise ValueError("REX_API_KEY environment variable is required")
 
 # Parse connection details from DATABASE_URL
-from urllib.parse import urlparse
 parsed_url = urlparse(DATABASE_URL)
 DB_HOST = parsed_url.hostname
 DB_PORT = parsed_url.port
-DB_NAME = parsed_url.path[1:]  # Remove leading slash
+DB_NAME = parsed_url.path[1:]   # Remove leading slash
 DB_USER = parsed_url.username
 DB_PASSWORD = parsed_url.password
 
@@ -51,7 +51,7 @@ app = FastAPI()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Update with your frontend origins in production
+    allow_origins=["*"],    # Update with your frontend origins in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -74,6 +74,34 @@ async def custom_rate_limit_exceeded_handler(request: Request, exc: RateLimitExc
 
 app.add_exception_handler(RateLimitExceeded, custom_rate_limit_exceeded_handler)
 
+
+# --- FIX 1: SECURITY: READ-ONLY QUERY VALIDATOR ---
+def validate_read_only_query(sqlquery: str):
+    """Checks if the query contains any forbidden write/DDL keywords and ensures it is a SELECT/WITH query."""
+    forbidden_keywords = [
+        'INSERT', 'UPDATE', 'DELETE', 'DROP', 'ALTER', 'CREATE', 
+        'TRUNCATE', 'GRANT', 'REVOKE', 'CALL', 'EXECUTE', 'SET SESSION AUTHORIZATION',
+        'VACUUM', 'REINDEX', 'COPY', 'IMPORT', 'EXPORT' 
+    ]
+    
+    query_upper = sqlquery.upper().strip()
+    
+    # 1. Check for common forbidden keywords
+    if any(keyword in query_upper for keyword in forbidden_keywords):
+        raise HTTPException(
+            status_code=403, 
+            detail="Write operations (INSERT, UPDATE, DELETE, etc.) are forbidden on this API endpoint."
+        )
+    
+    # 2. Stronger check: Ensure it starts with a read operation (SELECT or WITH)
+    if not (query_upper.startswith('SELECT') or query_upper.startswith('WITH')):
+        raise HTTPException(
+            status_code=403, 
+            detail="Only queries starting with SELECT or WITH (for CTEs) are permitted."
+        )
+# --- END VALIDATOR ---
+
+
 # Create SQLAlchemy engine
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 
@@ -93,6 +121,9 @@ async def sqlquery_alchemy(sqlquery: str, api_key: str, request: Request) -> Any
     """Execute SQL query using SQLAlchemy and return results directly."""
     if api_key != REX_API_KEY:
         raise HTTPException(status_code=401, detail="Invalid API key")
+        
+    # FIX 2A: Apply application-level validation
+    validate_read_only_query(sqlquery)
 
     logger.debug(f"Received API call to SQLAlchemy endpoint: {request.url}")
     logger.debug(f"SQL Query: {sqlquery}")
@@ -102,6 +133,8 @@ async def sqlquery_alchemy(sqlquery: str, api_key: str, request: Request) -> Any
             # Start a read-only transaction to enforce read-only at the DB level
             trans = connection.begin()
             try:
+                # This line explicitly sets the transaction to read only, 
+                # which is a strong defense against write queries.
                 connection.exec_driver_sql("SET TRANSACTION READ ONLY")
 
                 # Execute query
@@ -122,11 +155,13 @@ async def sqlquery_alchemy(sqlquery: str, api_key: str, request: Request) -> Any
                     trans.commit()
                     return results
                 
-                # For non-SELECT queries, attempt will fail due to read-only transaction
+                # For non-SELECT queries, the attempt will fail due to read-only transaction/validator
+                # We raise an explicit exception here just in case the validator failed, 
+                # though the 'SET TRANSACTION READ ONLY' should have already caused a database error.
                 else:
-                    trans.commit()
-                    logger.debug("Non-SELECT query attempted in read-only transaction")
-                    return {"status": "success", "message": "Query executed successfully"}
+                    trans.rollback()
+                    logger.warning("Non-SELECT query attempted in read-only transaction")
+                    raise HTTPException(status_code=403, detail="Non-SELECT queries are forbidden on this read-only API endpoint.")
             except:
                 trans.rollback()
                 raise
@@ -145,6 +180,9 @@ async def sqlquery_direct(sqlquery: str, api_key: str, request: Request) -> Any:
     if api_key != REX_API_KEY:
         raise HTTPException(status_code=401, detail="Invalid API key")
 
+    # FIX 2B: Apply application-level validation
+    validate_read_only_query(sqlquery)
+
     logger.debug(f"Received API call to direct connection endpoint: {request.url}")
     logger.debug(f"SQL Query: {sqlquery}")
 
@@ -157,7 +195,7 @@ async def sqlquery_direct(sqlquery: str, api_key: str, request: Request) -> Any:
             dbname=DB_NAME,
             user=DB_USER,
             password=DB_PASSWORD,
-            cursor_factory=RealDictCursor  # This will return results as dictionaries
+            cursor_factory=RealDictCursor    # This will return results as dictionaries
         )
         # Enforce read-only at the session level for this connection
         connection.set_session(readonly=True, autocommit=False)
@@ -169,15 +207,20 @@ async def sqlquery_direct(sqlquery: str, api_key: str, request: Request) -> Any:
             # If SELECT query, return results
             if sqlquery.strip().lower().startswith('select'):
                 results = cursor.fetchall()
+                # Commit here to finalize the read transaction cleanly
+                connection.commit() 
                 logger.debug(f"Query executed successfully via direct connection, returned {len(results)} rows")
                 # RealDictCursor returns results as dictionaries, so we can return directly
                 return list(results)
             
-            # For non-SELECT queries, commit and return status
+            # FIX 3: For non-SELECT queries, explicitly block them
             else:
-                connection.commit()
-                logger.debug("Non-SELECT query executed successfully via direct connection")
-                return {"status": "success", "message": "Query executed successfully"}
+                connection.rollback() # Ensure no partial write attempts are committed
+                logger.warning(f"Attempted non-SELECT query blocked in direct connection: {sqlquery}")
+                raise HTTPException(
+                    status_code=403, 
+                    detail="Non-SELECT queries are forbidden on this read-only API endpoint."
+                )
 
     except psycopg2.Error as e:
         logger.error(f"PostgreSQL error: {str(e)}")

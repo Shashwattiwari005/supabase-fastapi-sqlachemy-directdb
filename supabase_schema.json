@@ -1,0 +1,4170 @@
+{
+  "user_activity": {
+    "columns": {
+      "id": "INTEGER",
+      "user_email": "VARCHAR(255)",
+      "activity_type": "VARCHAR(255)",
+      "timestamp": "TIMESTAMP",
+      "description": "TEXT",
+      "emoji": "TEXT",
+      "extra_details": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "user_activity_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_timestamp_user_email",
+        "unique": false,
+        "column_names": [
+          "timestamp",
+          "user_email"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_user_activity_email_type",
+        "unique": false,
+        "column_names": [
+          "user_email",
+          "activity_type"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_user_activity_timestamp",
+        "unique": false,
+        "column_names": [
+          "timestamp"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_user_activity_user_email",
+        "unique": false,
+        "column_names": [
+          "user_email"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "youtube-ppt": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "yt_url": "TEXT",
+      "transcript": "TEXT",
+      "email": "TEXT",
+      "status": "TEXT",
+      "json": "TEXT",
+      "ppt_url": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "youtube-transcript_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "magicslides_slides": {
+    "columns": {
+      "id": "INTEGER",
+      "account_id": "VARCHAR",
+      "prompt": "TEXT",
+      "response": "TEXT",
+      "timestamp": "TIMESTAMP",
+      "email": "VARCHAR(255)",
+      "token_used": "INTEGER",
+      "title": "VARCHAR(255)",
+      "input_text": "TEXT",
+      "ms_instructions": "TEXT",
+      "slide_count": "INTEGER"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicslides_slides_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "pdf-ppt": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "pdf_url": "TEXT",
+      "transcript": "TEXT",
+      "email": "TEXT",
+      "status": "TEXT",
+      "ppt_url": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "pdf-ppt_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "topic-ppt": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "topic": "TEXT",
+      "email": "TEXT",
+      "status": "TEXT",
+      "ppt_url": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "topic-ppt_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "public_presentations": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "slug": "TEXT",
+      "prompt": "TEXT",
+      "source": "TEXT",
+      "json": "TEXT",
+      "ppt_url": "TEXT",
+      "image_urls": "JSONB",
+      "pdf_url": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "public_presentations_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "public_presentations_slug_key",
+        "unique": true,
+        "column_names": [
+          "slug"
+        ],
+        "duplicates_constraint": "public_presentations_slug_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "translate_activity": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "text": "TEXT",
+      "target": "TEXT",
+      "sourceLanguage": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "translate_activity_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "brand_themes": {
+    "columns": {
+      "id": "UUID",
+      "user_id": "TEXT",
+      "user_email": "TEXT",
+      "name": "TEXT",
+      "background_color": "TEXT",
+      "heading_color": "TEXT",
+      "body_color": "TEXT",
+      "primary_accent_color": "TEXT",
+      "secondary_accent_color": "TEXT",
+      "heading_font": "TEXT",
+      "heading_font_weight": "TEXT",
+      "body_font": "TEXT",
+      "body_font_weight": "TEXT",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "brand_themes_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "presentation_flow_activity": {
+    "columns": {
+      "id": "UUID",
+      "source_id": "VARCHAR(255)",
+      "source_type": "VARCHAR(50)",
+      "input_text": "TEXT",
+      "source_url": "TEXT",
+      "file_name": "VARCHAR(500)",
+      "file_size": "BIGINT",
+      "file_type": "VARCHAR(100)",
+      "file_url": "TEXT",
+      "template_name": "VARCHAR(255)",
+      "template_type": "VARCHAR(50)",
+      "user_template_ppt_url": "TEXT",
+      "user_template_extracted_json": "JSONB",
+      "user_template_images": "JSONB",
+      "presentation_type": "VARCHAR(100)",
+      "target_audience": "VARCHAR(100)",
+      "tone": "VARCHAR(50)",
+      "presentation_description": "TEXT",
+      "presentation_length_type": "VARCHAR(50)",
+      "slide_count": "INTEGER",
+      "language_code": "VARCHAR(10)",
+      "language_name": "VARCHAR(100)",
+      "llm_model_name": "VARCHAR(100)",
+      "llm_model_provider": "VARCHAR(100)",
+      "image_generation_enabled": "BOOLEAN",
+      "ai_images_enabled": "BOOLEAN",
+      "stock_images_enabled": "BOOLEAN",
+      "google_images_enabled": "BOOLEAN",
+      "web_research_enabled": "BOOLEAN",
+      "web_research_max_length": "INTEGER",
+      "preserved_settings_enabled": "BOOLEAN",
+      "user_email": "VARCHAR(255)",
+      "user_plan": "VARCHAR(50)",
+      "workspace_id": "VARCHAR(255)",
+      "workspace_slug": "VARCHAR(255)",
+      "generation_time_ms": "INTEGER",
+      "token_used": "INTEGER",
+      "model_version": "VARCHAR(100)",
+      "cache_status": "BOOLEAN",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP",
+      "additional_settings": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "presentation_flow_activity_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_presentation_flow_activity_created_at",
+        "unique": false,
+        "column_names": [
+          "created_at"
+        ],
+        "column_sorting": {
+          "created_at": [
+            "desc"
+          ]
+        },
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_presentation_flow_activity_source_id",
+        "unique": false,
+        "column_names": [
+          "source_id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_presentation_flow_activity_user_email",
+        "unique": false,
+        "column_names": [
+          "user_email"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "presentation_flow_activity_source_id_key",
+        "unique": true,
+        "column_names": [
+          "source_id"
+        ],
+        "duplicates_constraint": "presentation_flow_activity_source_id_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "url-ppt": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "url": "TEXT",
+      "email": "TEXT",
+      "status": "TEXT",
+      "ppt_url": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "url-ppt_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "ai_template_personalization": {
+    "columns": {
+      "id": "UUID",
+      "user_email": "VARCHAR",
+      "presentation_style_prompt": "TEXT",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ai_template_personalization_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "ai_template_personalization_user_email_key",
+        "unique": true,
+        "column_names": [
+          "user_email"
+        ],
+        "duplicates_constraint": "ai_template_personalization_user_email_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_ai_template_personalization_user_email",
+        "unique": false,
+        "column_names": [
+          "user_email"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "ai_template_references": {
+    "columns": {
+      "id": "UUID",
+      "personalization_id": "UUID",
+      "file_name": "VARCHAR",
+      "file_url": "VARCHAR",
+      "file_type": "VARCHAR",
+      "file_size": "INTEGER",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ai_template_references_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "ai_template_references_personalization_id_fkey",
+        "constrained_columns": [
+          "personalization_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "ai_template_personalization",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_ai_template_references_file_type",
+        "unique": false,
+        "column_names": [
+          "file_type"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_ai_template_references_personalization_id",
+        "unique": false,
+        "column_names": [
+          "personalization_id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "mcp_submissions": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "mcp_title": "TEXT",
+      "mcp_domain": "TEXT",
+      "slug": "TEXT",
+      "date": "TEXT",
+      "downloads": "INTEGER",
+      "language": "TEXT",
+      "package": "TEXT",
+      "provider": "TEXT",
+      "published": "BOOLEAN",
+      "stars": "INTEGER",
+      "subtitle": "TEXT",
+      "github": "TEXT",
+      "content": "TEXT",
+      "owner_email": "TEXT",
+      "status": "TEXT",
+      "mcp_id": "TEXT",
+      "payment_status": "TEXT",
+      "rank_priority": "TEXT",
+      "promoted_until": "DATE"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "owner_email",
+        "mcp_id"
+      ],
+      "name": "mcp_submissions_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "html_ppt": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "email": "TEXT",
+      "messages": "JSONB",
+      "chat_id": "TEXT",
+      "token_used": "BIGINT",
+      "topics": "JSONB",
+      "recent_topic": "TEXT",
+      "slide_count": "INTEGER",
+      "generation_time": "INTEGER",
+      "llm_models_call_timing": "INTEGER",
+      "model": "TEXT",
+      "source": "TEXT",
+      "language": "TEXT",
+      "pdf_url": "JSONB",
+      "preview_urls": "JSONB",
+      "is_good": "BOOLEAN",
+      "status": "TEXT",
+      "workspace_id": "TEXT",
+      "jobs": "JSONB",
+      "is_active": "BOOLEAN"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "html_ppt_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "image_text_details": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "email": "TEXT",
+      "image_url": "TEXT",
+      "image_text": "TEXT",
+      "source": "TEXT",
+      "image_count": "INTEGER"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "image_text_details_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "pdf_images": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "pdf_url": "TEXT",
+      "email": "TEXT",
+      "pdf_id": "TEXT",
+      "images": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "pdf_images_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "sources": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "source_id": "UUID",
+      "source_name": "TEXT",
+      "source_path": "TEXT",
+      "transcript": "TEXT",
+      "ppt_link": "TEXT",
+      "pdf_link": "TEXT",
+      "language": "TEXT",
+      "history": "JSONB",
+      "user_email": "TEXT",
+      "template_name": "TEXT",
+      "slide_count": "INTEGER",
+      "presentation_for": "TEXT",
+      "choose_language": "TEXT",
+      "model": "TEXT",
+      "image_source": "TEXT",
+      "google_text": "BOOLEAN",
+      "is_structured_slides": "BOOLEAN"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "source_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "editable_presentations": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "editor_id": "TEXT",
+      "streaming_data": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "edit_presentations_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "image_embadded_pdf": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "pdf_url": "TEXT",
+      "images": "JSONB",
+      "slug": "TEXT",
+      "email": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "image_embadded_pdf_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "pdf_image_embadding": {
+    "columns": {
+      "id": "BIGINT",
+      "timestamp": "TIMESTAMP",
+      "content": "TEXT",
+      "metadata": "JSONB",
+      "slug": "TEXT",
+      "embedding": "NULL",
+      "imageUrl": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "pdf_image_embadding_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "relatedBlog": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "blugSlug": "TEXT",
+      "blogInfo": "TEXT",
+      "blogDesc": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "relatedBlog_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "relatedBlog_blugId_key",
+        "unique": true,
+        "column_names": [
+          "blugSlug"
+        ],
+        "duplicates_constraint": "relatedBlog_blugId_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "ports": {
+    "columns": {
+      "id": "BIGINT",
+      "used_ports": "NUMERIC"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ports_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "related_quiz": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "quizSlug": "TEXT",
+      "quizInfo": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "related_quiz_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "related_quiz_quizSlug_key",
+        "unique": true,
+        "column_names": [
+          "quizSlug"
+        ],
+        "duplicates_constraint": "related_quiz_quizSlug_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "magicchart-queries": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "prompt": "TEXT",
+      "json": "JSONB",
+      "chartType": "TEXT",
+      "dataSource": "TEXT",
+      "imageUrl": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicchart-queries_pkey1",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "ms_documents": {
+    "columns": {
+      "id": "BIGINT",
+      "timestamp": "TIMESTAMP",
+      "content": "TEXT",
+      "metadata": "JSONB",
+      "slug": "TEXT",
+      "embedding": "NULL"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ms_documents_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "public_quiz": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "title": "TEXT",
+      "description": "TEXT",
+      "slug": "TEXT",
+      "response": "TEXT",
+      "topic": "TEXT",
+      "unique_id": "INTEGER"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "public_quiz_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "quiz_to_ppt_addon": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "topic": "TEXT",
+      "response": "TEXT",
+      "tokenUsed": "BIGINT",
+      "email": "TEXT",
+      "numberOfQuestions": "INTEGER"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "Quiz to PPT AddOn_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "Organisations": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "name": "TEXT",
+      "logo_url": "TEXT",
+      "usage": "JSONB",
+      "plan": "TEXT",
+      "organisation_id": "BIGINT",
+      "owners_email": "TEXT",
+      "team": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "Organisations_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "public_icons": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "name": "TEXT",
+      "icon_url": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "public_icons_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "ms_text_info": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "email": "TEXT",
+      "content": "TEXT",
+      "slug": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ms_text_info_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "ms_text_info_slug_key",
+        "unique": true,
+        "column_names": [
+          "slug"
+        ],
+        "duplicates_constraint": "ms_text_info_slug_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "razorpay-subscriptions": {
+    "columns": {
+      "id": "BIGINT",
+      "email": "TEXT",
+      "customer_id": "TEXT",
+      "subscription_id": "TEXT",
+      "billing_cycle_anchor": "BIGINT",
+      "cancel_at": "BIGINT",
+      "currency": "TEXT",
+      "start_date": "BIGINT",
+      "end_date": "BIGINT",
+      "status": "TEXT",
+      "plan_id": "TEXT",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP",
+      "workspace_id": "TEXT",
+      "sentInfoDiscord": "BOOLEAN",
+      "state": "TEXT",
+      "address": "TEXT",
+      "pincode": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "razorpay-subscriptions_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "razorpay-subscriptions_subscription_id_key",
+        "unique": true,
+        "column_names": [
+          "subscription_id"
+        ],
+        "duplicates_constraint": "razorpay-subscriptions_subscription_id_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "workspaces_duplicate1": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "name": "TEXT",
+      "slug": "TEXT",
+      "owner_id": "TEXT",
+      "updated_at": "TIMESTAMP",
+      "workspace_id": "UUID",
+      "workspace_logo": "TEXT",
+      "plan": "TEXT",
+      "workspace_members": "ARRAY",
+      "usage": "JSONB",
+      "default_workspace": "UUID",
+      "invite_code": "TEXT",
+      "email": "TEXT",
+      "notifications": "JSONB",
+      "my_templates": "JSONB",
+      "account_created": "BIGINT",
+      "last_launched": "BIGINT",
+      "first_launched": "BIGINT",
+      "stripe_customer_id": "TEXT",
+      "payment_info": "JSONB",
+      "cart_created_at": "TIMESTAMP",
+      "monthly_reminder": "JSONB",
+      "phone_number": "TEXT",
+      "is_whatsapp": "BOOLEAN",
+      "is_phone_number": "BOOLEAN",
+      "theme": "JSONB",
+      "watermark": "JSONB",
+      "country": "TEXT",
+      "city": "TEXT",
+      "cart_status": "TEXT",
+      "onboarding_data": "JSONB",
+      "metadata": "JSONB",
+      "referal_code": "TEXT",
+      "addons": "JSONB",
+      "api_usage_lifetime": "BIGINT",
+      "stripe_subscription_id": "TEXT",
+      "stripe_subscription_item_id": "TEXT",
+      "stripe_usage_reported_month": "TEXT",
+      "stripe_usage_reported_quantity": "BIGINT",
+      "cloneslidefreecredits": "INTEGER"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "workspaces_duplicate1_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "workspaces_duplicate1_email_key",
+        "unique": true,
+        "column_names": [
+          "email"
+        ],
+        "duplicates_constraint": "workspaces_duplicate1_email_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "workspaces_duplicate1_slug_key",
+        "unique": true,
+        "column_names": [
+          "slug"
+        ],
+        "duplicates_constraint": "workspaces_duplicate1_slug_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "workspaces_duplicate1_workspace_id_key",
+        "unique": true,
+        "column_names": [
+          "workspace_id"
+        ],
+        "duplicates_constraint": "workspaces_duplicate1_workspace_id_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "ppt_gpt_slides": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ppt-gpt-slides_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "public_quiz_new": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "title": "TEXT",
+      "description": "TEXT",
+      "slug": "TEXT",
+      "response": "TEXT",
+      "topic": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "public_quiz_new_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "presentation_errors": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "account_id": "VARCHAR(255)",
+      "prompt": "TEXT",
+      "error": "TEXT",
+      "timestamp": "TIMESTAMP",
+      "email": "VARCHAR(255)",
+      "title": "TEXT",
+      "input_text": "TEXT",
+      "slide_count": "INTEGER",
+      "month_year": "VARCHAR(7)",
+      "email_sent": "BOOLEAN"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "presentation_errors_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "feedback": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "presentation_id": "VARCHAR",
+      "is_good": "BOOLEAN",
+      "selection": "TEXT",
+      "description": "TEXT",
+      "email": "TEXT",
+      "send": "BOOLEAN",
+      "source": "TEXT",
+      "pdf_url": "TEXT",
+      "mail_send": "BOOLEAN"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "feedback_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "feedback_presentation_id_fkey",
+        "constrained_columns": [
+          "presentation_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "magicslides_presentations",
+        "referred_columns": [
+          "presentation_id"
+        ],
+        "options": {},
+        "comment": null
+      }
+    ],
+    "indexes": []
+  },
+  "onboarding_question": {
+    "columns": {
+      "id": "INTEGER",
+      "email": "VARCHAR(255)",
+      "role": "VARCHAR(255)",
+      "referral_source": "VARCHAR(255)",
+      "goals": "TEXT",
+      "phone": "TEXT",
+      "timestamp": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "onboarding_question_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "onboarding_question_email_key",
+        "unique": true,
+        "column_names": [
+          "email"
+        ],
+        "duplicates_constraint": "onboarding_question_email_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "profiles": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "email": "TEXT",
+      "credits": "INTEGER",
+      "is_pro": "BOOLEAN"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "profiles_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "aichat_messages": {
+    "columns": {
+      "chat_id": "UUID",
+      "presentation_id": "UUID",
+      "email": "TEXT",
+      "chat": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "chat_id"
+      ],
+      "name": "aichat_messages_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "color_sheet": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "og_title": "TEXT"
+    },
+    "primary_key": {
+      "name": null,
+      "constrained_columns": []
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "askppt_documents": {
+    "columns": {
+      "id": "BIGINT",
+      "content": "TEXT",
+      "metadata": "JSONB",
+      "embedding": "NULL",
+      "source_id": "TEXT",
+      "source_url": "TEXT",
+      "ppt_id": "TEXT",
+      "timestamp": "TIMESTAMP",
+      "user_email": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "askppt_documents_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "askppt_documents_embedding_idx",
+        "unique": false,
+        "column_names": [
+          "embedding"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_ops": {
+            "embedding": "vector_cosine_ops"
+          },
+          "postgresql_with": {
+            "lists": "100"
+          },
+          "postgresql_using": "ivfflat",
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "magicslides_single_presentations": {
+    "columns": {
+      "id": "INTEGER",
+      "account_id": "TEXT",
+      "response": "TEXT",
+      "timestamp": "TIMESTAMP",
+      "email": "TEXT",
+      "token_used": "INTEGER",
+      "title": "TEXT",
+      "input_text": "TEXT",
+      "presentation_id": "VARCHAR",
+      "shared_review": "BOOLEAN",
+      "extra_info_source": "TEXT",
+      "model": "TEXT",
+      "openai_id": "TEXT",
+      "generated_from": "TEXT",
+      "outline_time": "INTEGER",
+      "outline_ppt_time": "INTEGER",
+      "outline_response": "TEXT",
+      "content_source_url": "TEXT",
+      "ppt_url": "TEXT",
+      "pdf_url": "TEXT",
+      "type": "TEXT",
+      "slide_name": "TEXT",
+      "google_image": "BOOLEAN",
+      "google_text": "BOOLEAN",
+      "cache": "BOOLEAN",
+      "workspace_id": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicslides_single_presentations_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "magicslides_single_presentations_email_fkey",
+        "constrained_columns": [
+          "email"
+        ],
+        "referred_schema": "public",
+        "referred_table": "users",
+        "referred_columns": [
+          "email"
+        ],
+        "options": {},
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "magicslides_single_presentations_presentation_id_key",
+        "unique": true,
+        "column_names": [
+          "presentation_id"
+        ],
+        "duplicates_constraint": "magicslides_single_presentations_presentation_id_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "authors": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "slug": "TEXT",
+      "name": "TEXT",
+      "short_description": "TEXT",
+      "long_description": "TEXT",
+      "x_link": "TEXT",
+      "author_url": "TEXT",
+      "linkedin_url": "TEXT",
+      "youtube_url": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "authors_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "payload_storage": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "promptId": "TEXT",
+      "text": "TEXT",
+      "source": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "payload_storage_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "error_logs": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "error_desc": "TEXT",
+      "plan": "TEXT",
+      "email": "TEXT",
+      "error_class": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "error_logs_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "md-ppt": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "md_text": "TEXT",
+      "file_name": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "md-ppt_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "md-ppt_file_name_key",
+        "unique": true,
+        "column_names": [
+          "file_name"
+        ],
+        "duplicates_constraint": "md-ppt_file_name_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "stripe-webhook-events": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "json": "JSONB",
+      "succeed": "BOOLEAN"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "stripe-webhook-events_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "generation-feedback": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "description": "TEXT",
+      "email": "TEXT",
+      "plan": "TEXT",
+      "source": "TEXT",
+      "ppt_id": "VARCHAR"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "generation-feedback_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "generation-feedback_ppt_id_fkey",
+        "constrained_columns": [
+          "ppt_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "magicslides_presentations",
+        "referred_columns": [
+          "presentation_id"
+        ],
+        "options": {},
+        "comment": null
+      }
+    ],
+    "indexes": []
+  },
+  "magicchart-queries-web": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "prompt": "TEXT",
+      "json": "JSONB",
+      "chartType": "TEXT",
+      "dataSource": "TEXT",
+      "userAgent": "TEXT",
+      "locationDetails": "JSONB",
+      "slug": "TEXT",
+      "image_url": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicchart-queries_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "presentation_versions": {
+    "columns": {
+      "id": "UUID",
+      "presentation_id": "VARCHAR",
+      "version_number": "INTEGER",
+      "title": "VARCHAR",
+      "user_email": "VARCHAR",
+      "created_at": "TIMESTAMP",
+      "is_manual_save": "BOOLEAN",
+      "change_summary": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "presentation_versions_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_presentation_versions_created_at",
+        "unique": false,
+        "column_names": [
+          "created_at"
+        ],
+        "column_sorting": {
+          "created_at": [
+            "desc"
+          ]
+        },
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_presentation_versions_presentation_id",
+        "unique": false,
+        "column_names": [
+          "presentation_id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "presentation_versions_presentation_id_version_number_key",
+        "unique": true,
+        "column_names": [
+          "presentation_id",
+          "version_number"
+        ],
+        "duplicates_constraint": "presentation_versions_presentation_id_version_number_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "version_diffs": {
+    "columns": {
+      "id": "UUID",
+      "version_id": "UUID",
+      "diff_data": "JSONB",
+      "full_snapshot": "JSONB",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "version_diffs_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "version_diffs_version_id_fkey",
+        "constrained_columns": [
+          "version_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "presentation_versions",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_version_diffs_version_id",
+        "unique": false,
+        "column_names": [
+          "version_id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "magicslides_presentations": {
+    "columns": {
+      "id": "INTEGER",
+      "account_id": "TEXT",
+      "prompt": "TEXT",
+      "response": "TEXT",
+      "timestamp": "TIMESTAMP",
+      "email": "TEXT",
+      "token_used": "INTEGER",
+      "title": "TEXT",
+      "input_text": "TEXT",
+      "ms_instructions": "TEXT",
+      "slide_count": "INTEGER",
+      "presentation_id": "VARCHAR",
+      "summary_text": "TEXT",
+      "generation_time": "INTEGER",
+      "openai_call_time": "INTEGER",
+      "shared_review": "BOOLEAN",
+      "extra_info_source": "TEXT",
+      "model": "TEXT",
+      "openai_id": "TEXT",
+      "generated_from": "TEXT",
+      "outline_time": "INTEGER",
+      "outline_ppt_time": "INTEGER",
+      "outline_response": "TEXT",
+      "content_source_url": "TEXT",
+      "ppt_url": "TEXT",
+      "pdf_url": "TEXT",
+      "type": "TEXT",
+      "source": "TEXT",
+      "ppt_exits": "BOOLEAN",
+      "pdf_exists": "BOOLEAN",
+      "template_name": "TEXT",
+      "language": "TEXT",
+      "image_for_each_slides": "BOOLEAN",
+      "ai_image": "BOOLEAN",
+      "google_image": "BOOLEAN",
+      "google_text": "BOOLEAN",
+      "presentation_length": "TEXT",
+      "custom_template": "BOOLEAN",
+      "public": "BOOLEAN",
+      "cache": "BOOLEAN",
+      "first_slide_image_url": "TEXT",
+      "editor_id": "TEXT",
+      "presentation_for": "TEXT",
+      "g_slide_url": "TEXT",
+      "workspace_id": "TEXT",
+      "input_type": "TEXT",
+      "download_file_type": "TEXT",
+      "metadata": "JSONB",
+      "translated_response": "TEXT",
+      "isFav": "BOOLEAN"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicslides_presentations_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "magicslides_presentations_email_fkey",
+        "constrained_columns": [
+          "email"
+        ],
+        "referred_schema": "public",
+        "referred_table": "users",
+        "referred_columns": [
+          "email"
+        ],
+        "options": {},
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_email_time",
+        "unique": false,
+        "column_names": [
+          "email",
+          "timestamp"
+        ],
+        "column_sorting": {
+          "timestamp": [
+            "desc"
+          ]
+        },
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_generated_from",
+        "unique": false,
+        "column_names": [
+          "generated_from"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_magicslides_email_timestamp",
+        "unique": false,
+        "column_names": [
+          "email",
+          "timestamp"
+        ],
+        "column_sorting": {
+          "timestamp": [
+            "desc"
+          ]
+        },
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_magicslides_presentation_id",
+        "unique": false,
+        "column_names": [
+          "presentation_id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_magicslides_presentations_email",
+        "unique": false,
+        "column_names": [
+          "email"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_pdf_url_null",
+        "unique": false,
+        "column_names": [
+          "pdf_url"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_where": "(pdf_url IS NULL)",
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_presentations_google_text",
+        "unique": false,
+        "column_names": [
+          "google_text",
+          "id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_where": "(google_text = true)",
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_timestamp",
+        "unique": false,
+        "column_names": [
+          "timestamp"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "magicslides_presentations_email_idx",
+        "unique": false,
+        "column_names": [
+          "email"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "magicslides_presentations_presentation_id_key",
+        "unique": true,
+        "column_names": [
+          "presentation_id"
+        ],
+        "duplicates_constraint": "magicslides_presentations_presentation_id_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "askppt_qna": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "question": "TEXT",
+      "answer": "TEXT",
+      "user_id": "TEXT",
+      "ppt_id": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "askppt_qna_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "editable_feedback": {
+    "columns": {
+      "id": "TEXT",
+      "review": "TEXT",
+      "feedback": "TEXT",
+      "reviewed_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "name": null,
+      "constrained_columns": []
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_editable_feedback_id",
+        "unique": false,
+        "column_names": [
+          "id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "images_url_present_now": {
+    "columns": {
+      "id": "BIGINT",
+      "email": "TEXT",
+      "pdf_url": "TEXT",
+      "image_url": "ARRAY",
+      "image_id": "TEXT",
+      "created_at": "TIMESTAMP",
+      "presentation_id": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "images_url_present_view_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "images_url_present_now_presentation_id_key",
+        "unique": true,
+        "column_names": [
+          "presentation_id"
+        ],
+        "duplicates_constraint": "images_url_present_now_presentation_id_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "users": {
+    "columns": {
+      "id": "INTEGER",
+      "email": "TEXT",
+      "account_id": "TEXT",
+      "plan": "TEXT",
+      "usage": "JSONB",
+      "account_created": "BIGINT",
+      "last_launched": "BIGINT",
+      "first_launched": "BOOLEAN",
+      "stripe_customer_id": "TEXT",
+      "payment_info": "JSONB",
+      "answered_questionaire": "BOOLEAN",
+      "shared_review": "BOOLEAN",
+      "otp": "SMALLINT",
+      "telegram_id": "TEXT",
+      "credited": "BOOLEAN",
+      "invite-code": "TEXT",
+      "tried_askppt": "BOOLEAN",
+      "joined_from": "TEXT",
+      "name": "TEXT",
+      "first_name": "TEXT",
+      "cart_created_at": "TIMESTAMP",
+      "cart_status": "TEXT",
+      "monthly_reminder": "JSON",
+      "signup_source": "TEXT",
+      "phone_number": "TEXT",
+      "is_whatsapp": "BOOLEAN",
+      "is_phone_number": "BOOLEAN",
+      "theme": "JSONB",
+      "watermark": "JSONB",
+      "country": "TEXT",
+      "city": "TEXT",
+      "organisation_id": "TEXT",
+      "planExpireDate": "DATE",
+      "ai_image_usage": "JSONB",
+      "notifications": "JSONB",
+      "access_id": "TEXT",
+      "my_templates": "JSONB",
+      "onboarding_data": "JSONB",
+      "failed_login_count": "JSONB",
+      "workspaces": "JSONB",
+      "metadata": "JSONB",
+      "authorsBio": "TEXT",
+      "referal_code": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "users_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_users_created_at",
+        "unique": false,
+        "column_names": [
+          "account_created"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_users_email",
+        "unique": false,
+        "column_names": [
+          "email"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_users_plan",
+        "unique": false,
+        "column_names": [
+          "plan"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "users_account_id_key",
+        "unique": true,
+        "column_names": [
+          "account_id"
+        ],
+        "duplicates_constraint": "users_account_id_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "users_email_key",
+        "unique": true,
+        "column_names": [
+          "email"
+        ],
+        "duplicates_constraint": "users_email_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "incomplete_payments": {
+    "columns": {
+      "id": "INTEGER",
+      "email": "VARCHAR(255)",
+      "phone": "VARCHAR(50)",
+      "plan_name": "VARCHAR(100)",
+      "plan_details": "JSONB",
+      "reason_for_payment": "TEXT",
+      "cart_created_at": "TIMESTAMP",
+      "email_sent_at": "TIMESTAMP",
+      "whatsapp_sent_at": "TIMESTAMP",
+      "whatsapp_message_id": "VARCHAR(255)",
+      "status": "VARCHAR(50)",
+      "source": "VARCHAR(500)",
+      "user_agent": "TEXT",
+      "is_mobile": "BOOLEAN",
+      "workspace_id": "VARCHAR(255)",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "incomplete_payments_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_incomplete_payments_cart_created_at",
+        "unique": false,
+        "column_names": [
+          "cart_created_at"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_incomplete_payments_email",
+        "unique": false,
+        "column_names": [
+          "email"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_incomplete_payments_status",
+        "unique": false,
+        "column_names": [
+          "status"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "magicslides_mobile_app": {
+    "columns": {
+      "id": "BIGINT",
+      "platform": "TEXT",
+      "version": "TEXT",
+      "update_url": "TEXT",
+      "created_at": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicslides_mobile_app_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "presentation_present": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "pdf_url": "TEXT",
+      "ppt_url": "TEXT",
+      "image_urls": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "presentation_emebed_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "askppt_sources": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "url": "TEXT",
+      "source_id": "TEXT",
+      "is_indexed": "BOOLEAN",
+      "transcript": "TEXT",
+      "ppt_id": "TEXT",
+      "title": "TEXT",
+      "user_email": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "askppt-sources_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "banana_presentations": {
+    "columns": {
+      "created_at": "TIMESTAMP",
+      "user_id": "UUID",
+      "topic": "TEXT",
+      "slides": "JSONB",
+      "id": "UUID"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "banana_presentations_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "magic_call_details": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "call_id": "TEXT",
+      "bot_number": "TEXT",
+      "user_number": "TEXT",
+      "question": "TEXT",
+      "user_response": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magic_call_details_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "ai_chat_feedback": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "chat_id": "UUID",
+      "email": "TEXT",
+      "feedback": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ai_chat_feedback_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "customer-chat": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "user_id": "TEXT",
+      "chat_id": "UUID",
+      "content": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "customer-chat_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "comparisons": {
+    "columns": {
+      "id": "INTEGER",
+      "app1": "VARCHAR(255)",
+      "app2": "VARCHAR(255)",
+      "app1_urls": "ARRAY",
+      "app2_urls": "ARRAY",
+      "comparison_data": "JSONB",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "comparisons_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_comparison_lookup",
+        "unique": false,
+        "column_names": [
+          "app1",
+          "app2"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "website_data": {
+    "columns": {
+      "id": "INTEGER",
+      "app_name": "VARCHAR(255)",
+      "url": "TEXT",
+      "scraped_text": "TEXT",
+      "summary": "TEXT",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "website_data_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_app_name_url",
+        "unique": false,
+        "column_names": [
+          "app_name",
+          "url"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "edit_with_ai": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "presentation_id": "VARCHAR",
+      "response": "JSONB",
+      "email": "TEXT",
+      "query": "TEXT",
+      "presentation_name": "TEXT",
+      "pdf_url": "TEXT",
+      "ppt_url": "TEXT",
+      "json": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "edit_with_ai_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "edit_with_ai_presentation_id_fkey",
+        "constrained_columns": [
+          "presentation_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "magicslides_presentations",
+        "referred_columns": [
+          "presentation_id"
+        ],
+        "options": {},
+        "comment": null
+      }
+    ],
+    "indexes": []
+  },
+  "blogs": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "en_url": "TEXT",
+      "en_nt_url": "TEXT",
+      "fr_url": "TEXT",
+      "fr_nt_url": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "blogs_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "blogs_en_nt_url_key",
+        "unique": true,
+        "column_names": [
+          "en_nt_url"
+        ],
+        "duplicates_constraint": "blogs_en_nt_url_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "blogs_en_url_key",
+        "unique": true,
+        "column_names": [
+          "en_url"
+        ],
+        "duplicates_constraint": "blogs_en_url_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "pre_purchase_users": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "email": "TEXT",
+      "reason_for_purchase": "TEXT",
+      "phone_number": "TEXT",
+      "workspace_id": "TEXT",
+      "country": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "pre_purchase_emails_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "blog_posts": {
+    "columns": {
+      "id": "UUID",
+      "notion_id": "TEXT",
+      "title": "TEXT",
+      "description": "TEXT",
+      "content": "TEXT",
+      "published": "BOOLEAN",
+      "published_date": "TEXT",
+      "slug": "TEXT",
+      "og_image": "TEXT",
+      "tags": "ARRAY",
+      "category": "TEXT",
+      "author_slug": "TEXT",
+      "author": "TEXT",
+      "contains_toc": "BOOLEAN",
+      "is_dialpad_blog": "BOOLEAN",
+      "keywords": "TEXT",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "blog_posts_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "blog_posts_notion_id_key",
+        "unique": true,
+        "column_names": [
+          "notion_id"
+        ],
+        "duplicates_constraint": "blog_posts_notion_id_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_blog_posts_author_slug",
+        "unique": false,
+        "column_names": [
+          "author_slug"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_blog_posts_category",
+        "unique": false,
+        "column_names": [
+          "category"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_blog_posts_notion_id",
+        "unique": false,
+        "column_names": [
+          "notion_id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_blog_posts_published",
+        "unique": false,
+        "column_names": [
+          "published"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_blog_posts_slug",
+        "unique": false,
+        "column_names": [
+          "slug"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "onboarding_web": {
+    "columns": {
+      "id": "INTEGER",
+      "user_id": "INTEGER",
+      "sources": "ARRAY",
+      "app_used": "TEXT",
+      "frequency": "TEXT",
+      "templates": "ARRAY",
+      "hourly_value": "INTEGER",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP",
+      "number": "TEXT",
+      "feedback": "TEXT",
+      "role": "TEXT",
+      "industry": "TEXT",
+      "company_size": "TEXT",
+      "primary_use_case": "TEXT",
+      "how_found_us": "TEXT",
+      "onBoarded": "BOOLEAN"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "onboarding_web_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "onboarding_web_user_id_fkey",
+        "constrained_columns": [
+          "user_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": []
+  },
+  "pdf_images_desc": {
+    "columns": {
+      "id": "UUID",
+      "status": "TEXT",
+      "image_descriptions": "TEXT",
+      "image_urls": "ARRAY",
+      "error_message": "TEXT",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "pdf_images_desc_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_pdf_images_desc_status",
+        "unique": false,
+        "column_names": [
+          "status"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "downgrade_feedbacks": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "email": "TEXT",
+      "feedback": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "downgrade_feedbacks_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "ip_blocking": {
+    "columns": {
+      "id": "UUID",
+      "ip": "TEXT",
+      "attempts": "INTEGER",
+      "last_attempt": "BIGINT",
+      "is_blocked": "BOOLEAN",
+      "blocked_until": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ip_blocking_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "ip_blocking_ip_idx",
+        "unique": true,
+        "column_names": [
+          "ip"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "Tests": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "login": "BOOLEAN"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "Tests_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "user_roles": {
+    "columns": {
+      "id": "UUID",
+      "user_id": "UUID",
+      "role": "VARCHAR(5)",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "user_roles_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "user_roles_user_id_fkey",
+        "constrained_columns": [
+          "user_id"
+        ],
+        "referred_schema": "auth",
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "user_roles_user_id_role_key",
+        "unique": true,
+        "column_names": [
+          "user_id",
+          "role"
+        ],
+        "duplicates_constraint": "user_roles_user_id_role_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "magicslides-default-templates": {
+    "columns": {
+      "created_at": "TIMESTAMP",
+      "template": "TEXT",
+      "content": "JSONB",
+      "prompt": "TEXT",
+      "id": "UUID",
+      "type": "TEXT",
+      "structure": "JSONB",
+      "customer_email": "TEXT",
+      "published": "BOOLEAN",
+      "template_page": "BOOLEAN",
+      "with_image": "BOOLEAN",
+      "category": "TEXT",
+      "source": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicslides-default-templates_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "magicslides-default-templates_template_key",
+        "unique": true,
+        "column_names": [
+          "template"
+        ],
+        "duplicates_constraint": "magicslides-default-templates_template_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "customer-support-chat": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "userId": "TEXT",
+      "title": "TEXT",
+      "chatId": "UUID"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "customer-support-chat_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "generation-feedback_addon": {
+    "columns": {
+      "id": "BIGINT",
+      "email": "TEXT",
+      "satisfaction": "TEXT",
+      "liked_most": "TEXT",
+      "improvement": "TEXT",
+      "recommendation": "TEXT",
+      "additional_feedback": "TEXT",
+      "timestamp": "TIMESTAMP",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id",
+        "email"
+      ],
+      "name": "generation-feedback_addon_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "generation-feedback_addon_email_key",
+        "unique": true,
+        "column_names": [
+          "email"
+        ],
+        "duplicates_constraint": "generation-feedback_addon_email_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "upload_files_ppt_editor": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "email": "TEXT",
+      "image_url": "JSONB",
+      "video_url": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "upload_files_ppt_editor_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "categories": {
+    "columns": {
+      "id": "BIGINT",
+      "name": "TEXT",
+      "slug": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "categories_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "presentation_by_expert": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "email": "TEXT",
+      "contact_number": "TEXT",
+      "slide_count": "INTEGER",
+      "document": "TEXT",
+      "info_how_to_create": "TEXT",
+      "presentation_id": "TEXT",
+      "status": "TEXT",
+      "extimate_delivery_date": "TIMESTAMP",
+      "delivery_date": "TIMESTAMP",
+      "designed_ppt_url": "TEXT",
+      "designer_feedback": "TEXT",
+      "user_feedback": "TEXT",
+      "issues": "JSONB",
+      "designer_name": "TEXT",
+      "designer_updates": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "presentation_by_expert_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "rating": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "url": "TEXT",
+      "rating_array": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "rating_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "presentation_progress": {
+    "columns": {
+      "id": "TEXT",
+      "user_email": "TEXT",
+      "topic": "TEXT",
+      "template": "TEXT",
+      "source_type": "TEXT",
+      "source_content": "TEXT",
+      "current_step": "TEXT",
+      "settings": "JSONB",
+      "generation_status": "TEXT",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "presentation_progress_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "workspaces": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "name": "TEXT",
+      "slug": "TEXT",
+      "owner_id": "TEXT",
+      "updated_at": "TIMESTAMP",
+      "workspace_id": "UUID",
+      "workspace_logo": "TEXT",
+      "plan": "TEXT",
+      "workspace_members": "ARRAY",
+      "usage": "JSONB",
+      "default_workspace": "UUID",
+      "invite_code": "TEXT",
+      "email": "TEXT",
+      "notifications": "JSONB",
+      "my_templates": "JSONB",
+      "account_created": "BIGINT",
+      "last_launched": "BIGINT",
+      "first_launched": "BIGINT",
+      "stripe_customer_id": "TEXT",
+      "payment_info": "JSONB",
+      "cart_created_at": "TIMESTAMP",
+      "monthly_reminder": "JSONB",
+      "phone_number": "TEXT",
+      "is_whatsapp": "BOOLEAN",
+      "is_phone_number": "BOOLEAN",
+      "theme": "JSONB",
+      "watermark": "JSONB",
+      "country": "TEXT",
+      "city": "TEXT",
+      "cart_status": "TEXT",
+      "onboarding_data": "JSONB",
+      "metadata": "JSONB",
+      "referal_code": "TEXT",
+      "addons": "JSONB",
+      "api_usage_lifetime": "BIGINT",
+      "stripe_subscription_id": "TEXT",
+      "stripe_subscription_item_id": "TEXT",
+      "stripe_usage_reported_month": "TEXT",
+      "stripe_usage_reported_quantity": "BIGINT",
+      "cloneslidefreecredits": "INTEGER"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "workspaces_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "workspaces_slug_key",
+        "unique": true,
+        "column_names": [
+          "slug"
+        ],
+        "duplicates_constraint": "workspaces_slug_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "workspaces_workspace_id_unique",
+        "unique": true,
+        "column_names": [
+          "workspace_id"
+        ],
+        "duplicates_constraint": "workspaces_workspace_id_unique",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "chats": {
+    "columns": {
+      "id": "UUID",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP",
+      "title": "TEXT",
+      "slug": "TEXT",
+      "user_id": "UUID",
+      "last_message": "TEXT",
+      "model": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "chats_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "chats_user_id_fkey",
+        "constrained_columns": [
+          "user_id"
+        ],
+        "referred_schema": "auth",
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "chats_slug_idx",
+        "unique": false,
+        "column_names": [
+          "slug"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "chats_slug_key",
+        "unique": true,
+        "column_names": [
+          "slug"
+        ],
+        "duplicates_constraint": "chats_slug_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "chats_user_id_idx",
+        "unique": false,
+        "column_names": [
+          "user_id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "messages": {
+    "columns": {
+      "id": "UUID",
+      "created_at": "TIMESTAMP",
+      "chat_id": "UUID",
+      "role": "TEXT",
+      "content": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "messages_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "messages_chat_id_fkey",
+        "constrained_columns": [
+          "chat_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "chats",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "messages_chat_id_idx",
+        "unique": false,
+        "column_names": [
+          "chat_id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "presentation_collaborators": {
+    "columns": {
+      "id": "UUID",
+      "presentation_id": "UUID",
+      "email": "TEXT",
+      "role": "TEXT",
+      "invited_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "presentation_collaborators_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "presentation_collaborators_presentation_id_fkey",
+        "constrained_columns": [
+          "presentation_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "presentations",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_presentation_collaborators_presentation",
+        "unique": false,
+        "column_names": [
+          "presentation_id"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "presentation_collaborators_presentation_id_email_key",
+        "unique": true,
+        "column_names": [
+          "presentation_id",
+          "email"
+        ],
+        "duplicates_constraint": "presentation_collaborators_presentation_id_email_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "public_api_keys": {
+    "columns": {
+      "id": "UUID",
+      "workspace_id": "UUID",
+      "key_label": "TEXT",
+      "key_hash": "TEXT",
+      "access_id": "TEXT",
+      "user_email": "TEXT",
+      "key_payload": "JSONB",
+      "revoked": "BOOLEAN",
+      "usage_count": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "last_used_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "public_api_keys_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "public_api_keys_workspace_id_fkey",
+        "constrained_columns": [
+          "workspace_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "workspaces",
+        "referred_columns": [
+          "workspace_id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": []
+  },
+  "daily_news": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "date": "TIMESTAMP",
+      "news": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "daily_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "addon_web_ppt_generation": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "topic": "TEXT",
+      "template_name": "TEXT",
+      "slide_length": "INTEGER",
+      "image_source": "TEXT",
+      "include_images": "BOOLEAN",
+      "language": "TEXT",
+      "presentation_for": "TEXT",
+      "email": "TEXT",
+      "source_id": "TEXT",
+      "workspace_id": "TEXT",
+      "userid": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "addon_web_ppt_generation_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "public_api_usage_records": {
+    "columns": {
+      "id": "UUID",
+      "workspace_id": "UUID",
+      "api_key_id": "UUID",
+      "access_id": "TEXT",
+      "user_email": "TEXT",
+      "presentations_generated": "INTEGER",
+      "context": "TEXT",
+      "month": "TEXT",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "public_api_usage_records_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "public_api_usage_records_api_key_id_fkey",
+        "constrained_columns": [
+          "api_key_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "public_api_keys",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      },
+      {
+        "name": "public_api_usage_records_workspace_id_fkey",
+        "constrained_columns": [
+          "workspace_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "workspaces",
+        "referred_columns": [
+          "workspace_id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": []
+  },
+  "ai_image_users": {
+    "columns": {
+      "id": "UUID",
+      "email": "VARCHAR(255)",
+      "plan": "VARCHAR(20)",
+      "credits_remaining": "INTEGER",
+      "credits_total": "INTEGER",
+      "stripe_customer_id": "VARCHAR(255)",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ai_image_users_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "ai_image_users_email_key",
+        "unique": true,
+        "column_names": [
+          "email"
+        ],
+        "duplicates_constraint": "ai_image_users_email_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "mcp": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "title": "TEXT",
+      "subtitle": "TEXT",
+      "slug": "VARCHAR",
+      "content": "TEXT",
+      "provider": "TEXT",
+      "releaseDate": "TEXT",
+      "language": "TEXT",
+      "packageInfo": "TEXT",
+      "stars": "TEXT",
+      "downloads": "TEXT",
+      "githubLink": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "mcp_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "magicslides_design_tools": {
+    "columns": {
+      "id": "INTEGER",
+      "account_id": "TEXT",
+      "response": "TEXT",
+      "timestamp": "TIMESTAMP",
+      "email": "TEXT",
+      "token_used": "INTEGER",
+      "title": "TEXT",
+      "input_text": "TEXT",
+      "presentation_id": "VARCHAR",
+      "shared_review": "BOOLEAN",
+      "extra_info_source": "TEXT",
+      "model": "TEXT",
+      "openai_id": "TEXT",
+      "generated_from": "TEXT",
+      "outline_time": "INTEGER",
+      "outline_ppt_time": "INTEGER",
+      "outline_response": "TEXT",
+      "content_source_url": "TEXT",
+      "ppt_url": "TEXT",
+      "pdf_url": "TEXT",
+      "type": "TEXT",
+      "slide_name": "TEXT",
+      "google_image": "BOOLEAN",
+      "google_text": "BOOLEAN",
+      "cache": "BOOLEAN",
+      "workspace_id": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicslides_quiz_template_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "magicslides_quiz_template_email_fkey",
+        "constrained_columns": [
+          "email"
+        ],
+        "referred_schema": "public",
+        "referred_table": "users",
+        "referred_columns": [
+          "email"
+        ],
+        "options": {},
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "magicslides_quiz_template_presentation_id_key",
+        "unique": true,
+        "column_names": [
+          "presentation_id"
+        ],
+        "duplicates_constraint": "magicslides_quiz_template_presentation_id_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "pdf_image_urls": {
+    "columns": {
+      "id": "UUID",
+      "source_id": "TEXT",
+      "image_urls": "ARRAY",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "pdf_image_urls_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "ai-image-tracking": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "email": "TEXT",
+      "plan": "TEXT",
+      "workspace_id": "TEXT",
+      "image_count": "BIGINT",
+      "presentation_count": "BIGINT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ai-image-tracking_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "customer-support-message": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "chatId": "TEXT",
+      "role": "TEXT",
+      "parts": "JSONB",
+      "attachments": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "customer-support-message_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "presentation_invites": {
+    "columns": {
+      "id": "UUID",
+      "created_at": "TIMESTAMP",
+      "presentation_id": "UUID",
+      "email": "TEXT",
+      "role": "TEXT",
+      "token": "TEXT",
+      "expires_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "presentation_invites_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "presentation_invites_presentation_id_fkey",
+        "constrained_columns": [
+          "presentation_id"
+        ],
+        "referred_schema": "public",
+        "referred_table": "presentations",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {
+          "ondelete": "CASCADE"
+        },
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_presentation_invites_token",
+        "unique": false,
+        "column_names": [
+          "token"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "presentation_invites_token_key",
+        "unique": true,
+        "column_names": [
+          "token"
+        ],
+        "duplicates_constraint": "presentation_invites_token_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "add_slide_templates": {
+    "columns": {
+      "id": "UUID",
+      "template_key": "TEXT",
+      "template_name": "TEXT",
+      "is_private": "BOOLEAN",
+      "thumbnail": "TEXT",
+      "slides": "JSONB",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP",
+      "type": "TEXT",
+      "streaming": "TEXT",
+      "customer_email": "TEXT",
+      "sync": "BOOLEAN",
+      "forReview": "BOOLEAN",
+      "isApprovedForPublic": "BOOLEAN",
+      "slide_preview_images": "JSONB",
+      "category": "TEXT",
+      "isNoImgTemplate": "BOOLEAN",
+      "isFree": "BOOLEAN",
+      "first_slide_image": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "add_slide_templates_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "add_slide_templates_template_key_key",
+        "unique": true,
+        "column_names": [
+          "template_key"
+        ],
+        "duplicates_constraint": "add_slide_templates_template_key_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "custom_editor_layouts": {
+    "columns": {
+      "id": "UUID",
+      "user_id": "TEXT",
+      "user_email": "TEXT",
+      "slide_data": "JSONB",
+      "title": "TEXT",
+      "created_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "custom_editor_layouts_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "ai_slide_sessions": {
+    "columns": {
+      "id": "UUID",
+      "email": "VARCHAR",
+      "session_data": "JSONB",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ai_slide_sessions_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "idx_ai_slide_sessions_created_at",
+        "unique": false,
+        "column_names": [
+          "created_at"
+        ],
+        "column_sorting": {
+          "created_at": [
+            "desc"
+          ]
+        },
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_ai_slide_sessions_email",
+        "unique": false,
+        "column_names": [
+          "email"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_ai_slide_sessions_email_created",
+        "unique": false,
+        "column_names": [
+          "email",
+          "created_at"
+        ],
+        "column_sorting": {
+          "created_at": [
+            "desc"
+          ]
+        },
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "stripe-subscriptions": {
+    "columns": {
+      "id": "BIGINT",
+      "created": "BIGINT",
+      "email": "VARCHAR",
+      "customer_id": "VARCHAR",
+      "subscription_id": "VARCHAR",
+      "billing_cycle_anchor": "BIGINT",
+      "cancel_at": "BIGINT",
+      "cancellation_details": "JSONB",
+      "currency": "VARCHAR",
+      "start_date": "BIGINT",
+      "end_date": "BIGINT",
+      "status": "VARCHAR",
+      "plan_id": "VARCHAR",
+      "sentInfoDiscord": "BOOLEAN",
+      "refund_req": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "stripe-subscriptions_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "presentations": {
+    "columns": {
+      "id": "UUID",
+      "created_at": "TIMESTAMP",
+      "slides": "JSONB",
+      "updated_at": "TIMESTAMP",
+      "title": "TEXT",
+      "userid": "TEXT",
+      "userEmail": "TEXT",
+      "plan": "TEXT",
+      "share_count": "SMALLINT",
+      "export_count": "SMALLINT",
+      "present_count": "SMALLINT",
+      "workspace_id": "TEXT",
+      "first_image_url": "TEXT",
+      "language": "TEXT",
+      "public": "BOOLEAN",
+      "converted": "BOOLEAN",
+      "firstSlide": "JSONB",
+      "is_published": "BOOLEAN",
+      "owner_id": "TEXT",
+      "template_info": "JSONB",
+      "slides_previews": "JSONB",
+      "source": "TEXT",
+      "width": "INTEGER",
+      "height": "INTEGER",
+      "isApproved": "BOOLEAN",
+      "ppt_imported": "BOOLEAN",
+      "isFav": "BOOLEAN",
+      "ai_image_model_alias": "TEXT",
+      "total_credits_deducted": "INTEGER",
+      "credit_breakdown": "JSONB",
+      "thumbnail": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "presentations-copy_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [
+      {
+        "name": "fk_presentations_ai_model",
+        "constrained_columns": [
+          "ai_image_model_alias"
+        ],
+        "referred_schema": "public",
+        "referred_table": "ai_image_models",
+        "referred_columns": [
+          "alias"
+        ],
+        "options": {},
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_presentations_ai_model",
+        "unique": false,
+        "column_names": [
+          "ai_image_model_alias"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "template-order": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "order": "JSONB"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "template-order_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "ai_image_models": {
+    "columns": {
+      "id": "UUID",
+      "alias": "TEXT",
+      "name": "TEXT",
+      "category": "TEXT",
+      "credits_per_image": "INTEGER",
+      "is_active": "BOOLEAN",
+      "display_order": "INTEGER",
+      "description": "TEXT",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "ai_image_models_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "ai_image_models_alias_key",
+        "unique": true,
+        "column_names": [
+          "alias"
+        ],
+        "duplicates_constraint": "ai_image_models_alias_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_ai_image_models_active",
+        "unique": false,
+        "column_names": [
+          "is_active"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_ai_image_models_category",
+        "unique": false,
+        "column_names": [
+          "category"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      {
+        "name": "idx_ai_image_models_display_order",
+        "unique": false,
+        "column_names": [
+          "display_order"
+        ],
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "magicslide_tools_api_prompts": {
+    "columns": {
+      "id": "BIGINT",
+      "created_at": "TIMESTAMP",
+      "template_name": "TEXT",
+      "prompt": "TEXT"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicslide_tools_api_prompts_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": []
+  },
+  "magicslides-narration-add-in-users": {
+    "columns": {
+      "id": "UUID",
+      "email": "TEXT",
+      "name": "TEXT",
+      "plan": "TEXT",
+      "usage": "JSONB",
+      "metadata": "JSONB",
+      "first_name": "TEXT",
+      "last_name": "TEXT",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "magicslides-narration-add-in-users_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "magicslides-narration-add-in-users_email_key",
+        "unique": true,
+        "column_names": [
+          "email"
+        ],
+        "duplicates_constraint": "magicslides-narration-add-in-users_email_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  },
+  "credit_deduction_config": {
+    "columns": {
+      "id": "UUID",
+      "config_key": "TEXT",
+      "config_value": "INTEGER",
+      "description": "TEXT",
+      "created_at": "TIMESTAMP",
+      "updated_at": "TIMESTAMP"
+    },
+    "primary_key": {
+      "constrained_columns": [
+        "id"
+      ],
+      "name": "credit_deduction_config_pkey",
+      "comment": null,
+      "dialect_options": {
+        "postgresql_include": []
+      }
+    },
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "credit_deduction_config_config_key_key",
+        "unique": true,
+        "column_names": [
+          "config_key"
+        ],
+        "duplicates_constraint": "credit_deduction_config_config_key_key",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ]
+  }
+}

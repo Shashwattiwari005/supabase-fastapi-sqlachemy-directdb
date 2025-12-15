@@ -1,0 +1,106 @@
+{
+    "type": "object",
+    "description": "Auto-generated Supabase public schema",
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "columns": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "string"
+                }
+            },
+            "primary_key": {
+                "type": "object",
+                "additionalProperties": true
+            },
+            "foreign_keys": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            },
+            "indexes": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "additionalProperties": true
+    },
+    "example": {
+        "user_activity": {
+            "columns": {
+                "id": "INTEGER",
+                "user_email": "VARCHAR(255)",
+                "activity_type": "VARCHAR(255)",
+                "timestamp": "TIMESTAMP",
+                "description": "TEXT",
+                "emoji": "TEXT",
+                "extra_details": "JSONB"
+            },
+            "primary_key": {
+                "constrained_columns": [
+                    "id"
+                ],
+                "name": "user_activity_pkey",
+                "comment": null,
+                "dialect_options": {
+                    "postgresql_include": []
+                }
+            },
+            "foreign_keys": [],
+            "indexes": [
+                {
+                    "name": "idx_timestamp_user_email",
+                    "unique": false,
+                    "column_names": [
+                        "timestamp",
+                        "user_email"
+                    ],
+                    "include_columns": [],
+                    "dialect_options": {
+                        "postgresql_include": []
+                    }
+                },
+                {
+                    "name": "idx_user_activity_email_type",
+                    "unique": false,
+                    "column_names": [
+                        "user_email",
+                        "activity_type"
+                    ],
+                    "include_columns": [],
+                    "dialect_options": {
+                        "postgresql_include": []
+                    }
+                },
+                {
+                    "name": "idx_user_activity_timestamp",
+                    "unique": false,
+                    "column_names": [
+                        "timestamp"
+                    ],
+                    "include_columns": [],
+                    "dialect_options": {
+                        "postgresql_include": []
+                    }
+                },
+                {
+                    "name": "idx_user_activity_user_email",
+                    "unique": false,
+                    "column_names": [
+                        "user_email"
+                    ],
+                    "include_columns": [],
+                    "dialect_options": {
+                        "postgresql_include": []
+                    }
+                }
+            ]
+        }
+    }
+}
