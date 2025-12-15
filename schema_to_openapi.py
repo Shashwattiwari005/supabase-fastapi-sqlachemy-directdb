@@ -34,10 +34,13 @@ openapi = {
                         "description": "PostgreSQL SQL query string",
                     },
                     {
-                        "name": "api_key",
+                         "name": "api_key",
                         "in": "query",
-                        "required": True,
-                        "schema": {"type": "string"},
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "",
                     },
                 ],
                 "responses": {

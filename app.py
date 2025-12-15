@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, Request, status, Header
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine, text, event
 from sqlalchemy.exc import SQLAlchemyError
@@ -73,6 +73,121 @@ async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
         status_code=status.HTTP_429_TOO_MANY_REQUESTS,
         content={"detail": "Rate limit exceeded"}
     )
+
+# -------------------------------------------------
+# ROOT STATUS PAGE
+# -------------------------------------------------
+@app.get("/", response_class=HTMLResponse)
+async def root():
+    html = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IAG Server - Online</title>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+                background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0d0d1a 100%);
+                color: #fff;
+            }
+            .container {
+                text-align: center;
+                padding: 3rem;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            }
+            .status-dot {
+                width: 16px;
+                height: 16px;
+                background: #10b981;
+                border-radius: 50%;
+                display: inline-block;
+                margin-right: 10px;
+                animation: pulse 2s infinite;
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+            }
+            @keyframes pulse {
+                0%, 100% { opacity: 1; transform: scale(1); }
+                50% { opacity: 0.7; transform: scale(1.1); }
+            }
+            h1 {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+                background: linear-gradient(90deg, #60a5fa, #a78bfa);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .status {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                color: #10b981;
+                margin: 1.5rem 0;
+            }
+            .endpoints {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .endpoints h3 {
+                color: #94a3b8;
+                font-weight: 500;
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+            .endpoint {
+                display: inline-block;
+                background: rgba(96, 165, 250, 0.1);
+                border: 1px solid rgba(96, 165, 250, 0.3);
+                padding: 0.5rem 1rem;
+                margin: 0.3rem;
+                border-radius: 8px;
+                font-family: 'Consolas', 'Monaco', monospace;
+                font-size: 0.9rem;
+                color: #60a5fa;
+            }
+            .footer {
+                margin-top: 2rem;
+                color: #475569;
+                font-size: 0.8rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>IAG SQL Server</h1>
+            <div class="status">
+                <span class="status-dot"></span>
+                <span>All Systems Operational</span>
+            </div>
+            <p style="color: #94a3b8;">Read-only SQL query API powered by FastAPI</p>
+            <div class="endpoints">
+                <h3>Available Endpoints</h3>
+                <span class="endpoint">GET /sqlquery_alchemy/</span>
+                <span class="endpoint">GET /sqlquery_direct/</span>
+            </div>
+            <div class="footer">
+                Protected by API key authentication &bull; Rate limited
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    return HTMLResponse(content=html)
 
 # -------------------------------------------------
 # READ-ONLY QUERY VALIDATOR
